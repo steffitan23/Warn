@@ -28,4 +28,22 @@ def detect_safe_search_uri(uri):
         'violence': likelihood_name[safe.violence],
         'racy': likelihood_name[safe.racy]
     }
-    
+def detect_logos_uri(uri):
+    """Detects logos in the file located in Google Cloud Storage or on the Web.
+    """
+    client = vision.ImageAnnotatorClient()
+    image = vision.Image()
+    image.source.image_uri = uri
+
+    response = client.logo_detection(image=image)
+    logos = response.logo_annotations
+    print('Logos:')
+
+    for logo in logos:
+        print(logo.description)
+
+    if response.error.message:
+        raise Exception(
+            '{}\nFor more info on error messages, check: '
+            'https://cloud.google.com/apis/design/errors'.format(
+                response.error.message))
