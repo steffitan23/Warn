@@ -10,7 +10,7 @@ body {
   font-family: "Roboto", sans-serif;
   line-height: 1.5;
   background-color: #f8f8f9;
-  width: 24rem;
+  width: 30rem;
 }
 
 h1 {
@@ -27,7 +27,7 @@ h1 {
   display: grid;
   grid-gap: 1rem;
   place-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
 }
 
 .checkbox-group {
@@ -91,7 +91,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 8rem;
+  width: 10rem;
   min-height: 8rem;
   border-radius: 0.5rem;
   border: 2px solid #b5bfd9;
