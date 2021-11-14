@@ -33,11 +33,12 @@ function findTriggers() {
   }
   async function parseHtmlForImgs(element) {
     function checkForTriggers(response, deleteElement) {
+      var toDelete = [];
       response.forEach((trigger) => {
         console.log(trigger);
         chrome.storage.sync.get(null, (stored) => {
           if (trigger.name == "Violence" && stored["violence"]) {
-            deleteElement.remove();
+            toDelete.append(deleteElement);
             console.log("VIOLENCE FOUND");
           }
           if (
@@ -45,14 +46,14 @@ function findTriggers() {
               trigger.name == "Suggestive") &&
             stored["adult-content"]
           ) {
-            deleteElement.remove();
+            toDelete.append(deleteElement);
             console.log("ADULT CONTENT FOUND");
           }
           if (
             trigger.name == "Visually Disturbing" &&
             stored["visually-disturbing"]
           ) {
-            deleteElement.remove();
+            toDelete.append(deleteElement);
             console.log("VISUALLY DISUTBRING FOUND");
           }
           if (
@@ -61,18 +62,21 @@ function findTriggers() {
               trigger.name == "Alcohol") &&
             stored["substance-abuse"]
           ) {
-            deleteElement.remove();
+            toDelete.append(deleteElement);
             console.log("substance FOUND");
           }
           if (trigger.name == "Gambling" && stored["gambling"]) {
-            deleteElement.remove();
+            toDelete.append(deleteElement);
             console.log("VGMABLIGNG FOUND");
           }
           if (trigger.name == "Hate Symbols" && stored["hate"]) {
-            deleteElement.remove();
+            toDelete.append(deleteElement);
             console.log("ahatate FOUND");
           }
         });
+      });
+      toDelete.forEach((item) => {
+        item.src = "";
       });
     }
     var imgSrcUrls = element.getElementsByTagName("img");
