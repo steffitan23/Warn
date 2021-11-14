@@ -31,7 +31,7 @@ function findTriggers() {
       method: "POST",
     }).then((response) => response.json());
   }
-  function parseHtmlForImgs(element) {
+  async function parseHtmlForImgs(element) {
     function checkForTriggers(response) {
       response.forEach((trigger) => {
         console.log(trigger);
@@ -51,9 +51,8 @@ function findTriggers() {
         imgSrcUrls[i].clientWidth > 50
       ) {
         console.log(urlValue);
-        checkForTriggers(
-          post_request_image(APP_IP + "/awsModeration", urlValue)
-        );
+        var d = await post_request_image(APP_IP + "/awsModeration", urlValue);
+        checkForTriggers(d);
       }
     }
   }
