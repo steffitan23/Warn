@@ -23,6 +23,7 @@ class Test(Resource):
 @api.route('/assembly')
 class Assembly(Resource):
     def post(self):
+        print( request.form['audio_url'])
         endpoint = "https://api.assemblyai.com/v2/transcript"
         json = {"audio_url": request.form['audio_url'], "content_safety": True}
         headers = {
