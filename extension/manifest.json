@@ -24,10 +24,10 @@
   },
   "content_scripts": [
     {
-      "matches": ["http://*/*", "https://*/*", "http://*"],
+      "matches": ["http://*/*", "https://*/*", "http://*/"],
       "js": ["content.js"],
       "run_at": "document_end"
     }
   ],
-  "host_permissions": ["https://*/*", "http://*"]
+  "host_permissions": ["https://*/*", "http://*/"]
 }
