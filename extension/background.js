@@ -63,6 +63,7 @@ function findTriggers() {
     let poll_response = await poll_assembly(id);
     while (poll_response.status != "completed" && delay_time < 4) {
       await delay(7000);
+      console.log(poll_response.status);
       poll_response = await poll_assembly(id);
       delay_time += 1;
     }
