@@ -75,7 +75,18 @@ function findTriggers() {
         stored["adult-content"]
       ) {
         toDelete.remove();
-        console.log("removed element");
+        console.log("removed element bc adult content");
+      }
+      if (summary.gambling >= 0.7 && stored["gambling"]) {
+        toDelete.remove();
+        console.log("removed element bc gambling");
+      }
+      if (
+        (summary.alcohol >= 0.7 || summary.drugs >= 0.7) &&
+        stored["substance-abuse"]
+      ) {
+        toDelete.remove();
+        console.log("removed element bc substances");
       }
     });
   }
