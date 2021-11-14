@@ -1,11 +1,5 @@
-// Initialize butotn with users's prefered color
-let getTriggers = document.getElementById("getTriggers");
+let getTriggers = document.getElementById("getTriggers"); //guse dom to select button
 
-chrome.storage.sync.get("triggers", ({ triggers }) => {
-  console.log("selected triggers:", triggers);
-});
-
-// When the button is clicked, inject setPageBackgroundColor into current page
 getTriggers.addEventListener("click", async () => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
@@ -19,14 +13,15 @@ const checkboxes = document.querySelectorAll(
   "input[type=checkbox][name=trigger-name]"
 );
 
-checkboxes.forEach(function (checkbox) {
+checkboxes.forEach((checkbox) => {
   checkbox.onchange = function () {
     chrome.storage.sync.set({ [this.value]: this.checked });
   };
+  chrome.storage.sync.get(checkbox.value, (e) => {
+    checkbox.checked = e[checkbox.value];
+  });
 });
 
-// The body of this function will be execuetd as a content script inside the
-// current page
 function findTriggers() {
   function parseHtmlString(element) {
     var imgSrcUrls = element.getElementsByTagName("img");
@@ -39,7 +34,4 @@ function findTriggers() {
   }
 
   parseHtmlString(document);
-  chrome.storage.sync.get(null, function (result) {
-    console.log(result);
-  });
 }
