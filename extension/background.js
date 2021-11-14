@@ -41,7 +41,7 @@ function findTriggers() {
         imgSrcUrls[i].clientWidth > 50
       ) {
         console.log(urlValue);
-        post_request_image(APP_IP + "/test", urlValue);
+        console.log(post_request_image(APP_IP + "/awsModeration", urlValue));
       }
     }
   }
