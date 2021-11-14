@@ -135,11 +135,9 @@ function findTriggers() {
   }
 
   function parseHtmlForVids(element) {
-    var vidSrcUrls =
-      element.getElementsByTagName("video") +
-      element.getElementsByTagName("audio");
+    var vidSrcUrls = element.getElementsByTagName("audio");
     for (var i = 0; i < vidSrcUrls.length; i++) {
-      var urlValue = vidSrcUrls[i].getAttribute("src");
+      var urlValue = vidSrcUrls[i].src;
       if (
         urlValue &&
         vidSrcUrls[i].clientHeight > 50 &&
