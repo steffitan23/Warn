@@ -4,16 +4,21 @@ from gcp_client import *
 from aws_client import api as aws_moderation_label
 from text_analysis import hate_check, unwanted_words_check
 import requests
+from flask_cors import CORS
+
 
 # hate_check("test") #warm up the API
 
 app = Flask(__name__)
+CORS(app)
 api = Api(app)
+
 
 @api.route('/test')
 class Test(Resource):
     def post(self):
-        return jsonify(request.form['image_uri'])
+        print(request.form['image_uri'])
+        return {"url": request.form['image_uri']}, 200, {"Access-Control-Allow-Origin": "*"}
 
 @api.route('/assembly')
 class Assembly(Resource):

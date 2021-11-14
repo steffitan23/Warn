@@ -13,7 +13,7 @@ function findTriggers() {
   async function post_request_image(url, image_url) {
     return fetch(url, {
       body: "image_uri=" + image_url,
-      mode: "no-cors",
+      mode: "cors",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
