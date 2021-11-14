@@ -74,6 +74,7 @@ function findTriggers() {
         (summary.nsfw >= 0.7 || summary.profanity >= 0.7) &&
         stored["adult-content"]
       ) {
+        console.log(toDelete)
         toDelete.src = "";
         console.log("removed element");
       }
