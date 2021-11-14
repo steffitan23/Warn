@@ -34,6 +34,7 @@ function findTriggers() {
   function parseHtmlForImgs(element) {
     function checkForTriggers(response) {
       response.forEach((trigger) => {
+        console.log(trigger);
         chrome.storage.sync.get(null, (stored) => {
           if (trigger.name == "Violence" && stored["violence"]) {
             console.log("VIOLENCE FOUND");
