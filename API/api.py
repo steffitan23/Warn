@@ -91,6 +91,7 @@ class AWSModeration(Resource):
         Returns:
             JSON: A JSON object containing the moderation properties of the image.
         """
+        return
         image_uri = request.form['image_uri']
         return jsonify(aws_moderation_label(image_uri))
 
