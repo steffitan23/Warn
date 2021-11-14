@@ -38,7 +38,7 @@ function findTriggers() {
         console.log(trigger);
         chrome.storage.sync.get(null, (stored) => {
           if (trigger.name == "Violence" && stored["violence"]) {
-            toDelete.append(deleteElement);
+            toDelete.push(deleteElement);
             console.log("VIOLENCE FOUND");
           }
           if (
@@ -46,14 +46,14 @@ function findTriggers() {
               trigger.name == "Suggestive") &&
             stored["adult-content"]
           ) {
-            toDelete.append(deleteElement);
+            toDelete.push(deleteElement);
             console.log("ADULT CONTENT FOUND");
           }
           if (
             trigger.name == "Visually Disturbing" &&
             stored["visually-disturbing"]
           ) {
-            toDelete.append(deleteElement);
+            toDelete.push(deleteElement);
             console.log("VISUALLY DISUTBRING FOUND");
           }
           if (
@@ -62,15 +62,15 @@ function findTriggers() {
               trigger.name == "Alcohol") &&
             stored["substance-abuse"]
           ) {
-            toDelete.append(deleteElement);
+            toDelete.push(deleteElement);
             console.log("substance FOUND");
           }
           if (trigger.name == "Gambling" && stored["gambling"]) {
-            toDelete.append(deleteElement);
+            toDelete.push(deleteElement);
             console.log("VGMABLIGNG FOUND");
           }
           if (trigger.name == "Hate Symbols" && stored["hate"]) {
-            toDelete.append(deleteElement);
+            toDelete.push(deleteElement);
             console.log("ahatate FOUND");
           }
         });
