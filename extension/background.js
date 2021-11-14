@@ -74,7 +74,7 @@ function findTriggers() {
         (summary.nsfw >= 0.7 || summary.profanity >= 0.7) &&
         stored["adult-content"]
       ) {
-        toDelete.src = "";
+        toDelete.remove();
         console.log("removed element");
       }
     });
@@ -147,7 +147,7 @@ function findTriggers() {
       var urlValue = vidSrcUrls[i].src;
       if (urlValue) {
         console.log(urlValue);
-        request_Assembly(urlValue), vidSrcUrls[i];
+        request_Assembly(urlValue, vidSrcUrls[i]);
       }
     }
   }
