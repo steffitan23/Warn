@@ -32,6 +32,15 @@ function findTriggers() {
     }).then((response) => response.json());
   }
   function parseHtmlForImgs(element) {
+    function checkForTriggers(response) {
+      response.forEach((trigger) => {
+        chrome.storage.sync.get(null, (stored) => {
+          if ((trigger.name == "Violence") & stored["violence"]) {
+            console.log("VIOLENCE FOUND");
+          }
+        });
+      });
+    }
     var imgSrcUrls = element.getElementsByTagName("img");
     for (var i = 0; i < imgSrcUrls.length; i++) {
       var urlValue = imgSrcUrls[i].getAttribute("src");
@@ -41,7 +50,9 @@ function findTriggers() {
         imgSrcUrls[i].clientWidth > 50
       ) {
         console.log(urlValue);
-        console.log(post_request_image(APP_IP + "/awsModeration", urlValue));
+        checkForTriggers(
+          post_request_image(APP_IP + "/awsModeration", urlValue)
+        );
       }
     }
   }
@@ -60,6 +71,7 @@ function findTriggers() {
       }
     }
   }
+
   parseHtmlForImgs(document);
   parseHtmlForVids(document);
 }
