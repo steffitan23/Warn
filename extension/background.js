@@ -54,7 +54,7 @@ function findTriggers() {
     }).then((response) => response.json());
   }
 
-  async function request_Assembly(url) {
+  async function request_Assembly(url, toDelete) {
     const delay = (ms) => new Promise((res) => setTimeout(res, ms));
     let delay_time = 0;
     let response = await initial_assembly_req(url);
@@ -68,7 +68,16 @@ function findTriggers() {
       delay_time += 1;
     }
     console.log(poll_response);
-    return poll_response;
+    var summary = poll_response.content_safety_labels.summary;
+    chrome.storage.sync.get(null, (stored) => {
+      if (
+        (summary.nsfw >= 0.7 || summary.profanity >= 0.7) &&
+        stored["adult-content"]
+      ) {
+        toDelete.remove();
+        console.log("removed element");
+      }
+    });
   }
 
   async function parseHtmlForImgs(element) {
@@ -138,7 +147,7 @@ function findTriggers() {
       var urlValue = vidSrcUrls[i].src;
       if (urlValue) {
         console.log(urlValue);
-        request_Assembly(urlValue);
+        request_Assembly(urlValue), vidSrcUrls[i];
       }
     }
   }
