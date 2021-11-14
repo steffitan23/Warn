@@ -30,11 +30,6 @@ class UnwantedWords(Resource):
         unwanted_words = request.form['unwanted_words']
         return jsonify(unwanted_words_check(text, unwanted_words))
 
-@api.route('/assemblyAIContent')
-class AssemblyAIContent(Resource):
-    def post(self):
-        return
-
 @api.route('/gcpSafeSearch')
 @api.doc(params={'image_uri': 'A link to an image'})
 class SafeSearch(Resource):
