@@ -40,6 +40,38 @@ function findTriggers() {
             deleteElement.remove();
             console.log("VIOLENCE FOUND");
           }
+          if (
+            (trigger.name == "Explicit Nudity" ||
+              trigger.name == "Suggestive") &&
+            stored["adult-content"]
+          ) {
+            deleteElement.remove();
+            console.log("ADULT CONTENT FOUND");
+          }
+          if (
+            trigger.name == "Visually Disturbing" &&
+            stored["visually-disturbing"]
+          ) {
+            deleteElement.remove();
+            console.log("VISUALLY DISUTBRING FOUND");
+          }
+          if (
+            (trigger.name == "Drugs" ||
+              trigger.name == "Tobacco" ||
+              trigger.name == "Alcohol") &&
+            stored["substance-abuse"]
+          ) {
+            deleteElement.remove();
+            console.log("substance FOUND");
+          }
+          if (trigger.name == "Gambling" && stored["gambling"]) {
+            deleteElement.remove();
+            console.log("VGMABLIGNG FOUND");
+          }
+          if (trigger.name == "Hate Symbols" && stored["hate"]) {
+            deleteElement.remove();
+            console.log("ahatate FOUND");
+          }
         });
       });
     }
