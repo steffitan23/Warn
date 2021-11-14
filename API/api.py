@@ -3,13 +3,48 @@ from flask_restx import Resource, Api
 from gcp_client import *
 from aws_client import api as aws_moderation_label
 from text_analysis import hate_check, unwanted_words_check
+import requests
+from flask_cors import CORS
+
 
 # hate_check("test") #warm up the API
 
 app = Flask(__name__)
+CORS(app)
 api = Api(app)
 
 
+@api.route('/test')
+class Test(Resource):
+    def post(self):
+        print(request.form['image_uri'])
+        return {"url": request.form['image_uri']}, 200, {"Access-Control-Allow-Origin": "*"}
+
+@api.route('/assembly')
+class Assembly(Resource):
+    def post(self):
+        endpoint = "https://api.assemblyai.com/v2/transcript"
+        json = {"audio_url": request.form['audio_url']}
+        headers = {
+        "authorization": "d8d5b2cc7bcc427f9a8e830fde11262f",
+        "content-type": "application/json"
+        }
+
+        response = requests.post(endpoint, json=json, headers=headers)
+        print(response.json())
+        return response.json()
+@api.route('/assemblyPoll')
+class AssemblyPoll(Resource):
+    def post(self):
+        id = request.form['id']
+        endpoint = "https://api.assemblyai.com/v2/transcript/"+id
+        headers = {
+        "authorization": "d8d5b2cc7bcc427f9a8e830fde11262f",
+        } 
+        response = requests.get(endpoint, headers=headers)
+        print(response.json())
+        return response.json()
+    
 @api.route('/hateSpeech')
 @api.doc(params={'text': 'A string of text'})
 class HateSpeech(Resource):

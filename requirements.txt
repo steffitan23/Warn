@@ -3,3 +3,4 @@ flask_restx
 google-cloud-vision
 boto3
 pillow
+Flask-Cors
