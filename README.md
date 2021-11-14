@@ -9,9 +9,10 @@ Everyone deserves to feel safe online. But, for better or worse, everything is o
 **Warn** is a Chrome extension, written in pure JavaScript. It is supported by a RESTful API writtent in Python Flask and powered by the AssemblyAI API and AWS Rekognition. 
 
 ## Challenges we ran into
+Chrome extensions are quite challenging to build compared to a typical web app-- we ran into a lot of deprecated code, blocked functions, and especially CORS issues.
 
 ## Accomplishments that we're proud of
-
-## What we learned
+We're really proud of how we integrated AssemblyAI into this project. Being able to filter dynamic media, not just images, makes **Warn** far more powerful and useful to users.
 
 ## What's next for Warn
+We'd like to improve our recognition and add a lot more customization to the extension. Every person is unique, and so we'd like to give everyone options for what they see and what they don't.
