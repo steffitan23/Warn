@@ -92,7 +92,7 @@ function findTriggers() {
   }
 
   async function parseHtmlForImgs(element) {
-    const replaceImage = "images/replace.png";
+    const replaceImage = "./images/replace.png";
     function checkForTriggers(response, deleteElement) {
       response.forEach((trigger) => {
         console.log(trigger);
