@@ -1,4 +1,4 @@
-##WINNER: Boston Hacks Mental Health Track, 2021
+## WINNER: Boston Hacks Mental Health Track, 2021
 ## Inspiration
 
 Everyone deserves to feel safe online. But, for better or worse, everything is out there on the internet, including harmful content. **Warn** helps users take control over their well-being by filtering out content that could reawaken trauma. 
