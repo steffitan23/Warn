@@ -67,6 +67,7 @@ function findTriggers() {
       poll_response = await poll_assembly(id);
       delay_time += 1;
     }
+    console.log(poll_response);
     return poll_response;
   }
 
