@@ -140,7 +140,7 @@ function findTriggers() {
       var urlValue = vidSrcUrls[i].src;
       if (urlValue) {
         console.log(urlValue);
-        request_Assembly(vidSrcUrls[i]);
+        request_Assembly(urlValue);
       }
     }
   }
