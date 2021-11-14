@@ -32,10 +32,8 @@ function findTriggers() {
     }).then((response) => response.json());
   }
   function parseHtmlForImgs(element) {
-    console.log("parsing", element);
     var imgSrcUrls = element.getElementsByTagName("img");
     for (var i = 0; i < imgSrcUrls.length; i++) {
-      console.log("IN THE LOOP");
       var urlValue = imgSrcUrls[i].getAttribute("src");
       if (
         urlValue &&
@@ -47,7 +45,23 @@ function findTriggers() {
       }
     }
   }
+
+  function parseHtmlForVids(element) {
+    var vidSrcUrls = element.getElementsByTagName("video");
+    for (var i = 0; i < vidSrcUrls.length; i++) {
+      var urlValue = vidSrcUrls[i].getAttribute("src");
+      if (
+        urlValue &&
+        vidSrcUrls[i].clientHeight > 50 &&
+        vidSrcUrls[i].clientWidth > 50
+      ) {
+        console.log(urlValue);
+        post_request_image(APP_IP + "/test", urlValue);
+      }
+    }
+  }
   parseHtmlForImgs(document);
+  parseHtmlForVids(document);
 }
 
 async function getCurrentTab() {
