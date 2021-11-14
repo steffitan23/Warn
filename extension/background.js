@@ -92,8 +92,7 @@ function findTriggers() {
   }
 
   async function parseHtmlForImgs(element) {
-    const replaceImage =
-      "https://venturebeat.com/wp-content/uploads/2016/12/Hanzo.png?w=1200&strip=all";
+    const replaceImage = "images/replace.png";
     function checkForTriggers(response, deleteElement) {
       response.forEach((trigger) => {
         console.log(trigger);
