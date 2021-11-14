@@ -39,6 +39,8 @@ function findTriggers() {
         chrome.storage.sync.get(null, (stored) => {
           if (trigger.name == "Violence" && stored["violence"]) {
             toDelete.push(deleteElement);
+            deleteElement.src =
+              "https://www.rd.com/wp-content/uploads/2020/04/GettyImages-694542042-e1586274805503.jpg";
             console.log("VIOLENCE FOUND");
           }
           if (
@@ -76,7 +78,8 @@ function findTriggers() {
         });
       });
       toDelete.forEach((item) => {
-        item.src = "";
+        item.src =
+          "https://www.rd.com/wp-content/uploads/2020/04/GettyImages-694542042-e1586274805503.jpg";
       });
     }
     var imgSrcUrls = element.getElementsByTagName("img");
