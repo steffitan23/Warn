@@ -5,7 +5,7 @@ from aws_client import api as aws_moderation_label
 from text_analysis import hate_check, unwanted_words_check
 import requests
 from flask_cors import CORS
-
+import os
 
 # hate_check("test") #warm up the API
 
@@ -27,7 +27,7 @@ class Assembly(Resource):
         endpoint = "https://api.assemblyai.com/v2/transcript"
         json = {"audio_url": request.form['audio_url'], "content_safety": True}
         headers = {
-        "authorization": "d8d5b2cc7bcc427f9a8e830fde11262f",
+        "authorization": os.getenv("assembly_auth"),
         "content-type": "application/json"
         }
 
@@ -40,7 +40,7 @@ class AssemblyPoll(Resource):
         id = request.form['id']
         endpoint = "https://api.assemblyai.com/v2/transcript/"+id
         headers = {
-        "authorization": "d8d5b2cc7bcc427f9a8e830fde11262f",
+        "authorization": os.getenv("assembly_auth"),
         } 
         response = requests.get(endpoint, headers=headers)
         print(response.json())
