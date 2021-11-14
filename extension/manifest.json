@@ -1,6 +1,6 @@
 {
-  "name": "Trigger",
-  "description": "Trigger warning extension",
+  "name": "Warn",
+  "description": "A simple way for users to block potentially triggering media.",
   "version": "1.0",
   "manifest_version": 3,
   "background": {
