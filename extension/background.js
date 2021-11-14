@@ -32,15 +32,14 @@ function findTriggers() {
     }).then((response) => response.json());
   }
   async function parseHtmlForImgs(element) {
+    const replaceImage =
+      "https://venturebeat.com/wp-content/uploads/2016/12/Hanzo.png?w=1200&strip=all";
     function checkForTriggers(response, deleteElement) {
-      var toDelete = [];
       response.forEach((trigger) => {
         console.log(trigger);
         chrome.storage.sync.get(null, (stored) => {
           if (trigger.name == "Violence" && stored["violence"]) {
-            toDelete.push(deleteElement);
-            deleteElement.src =
-              "https://www.rd.com/wp-content/uploads/2020/04/GettyImages-694542042-e1586274805503.jpg";
+            deleteElement.src = replaceImage;
             console.log("VIOLENCE FOUND");
           }
           if (
@@ -48,14 +47,14 @@ function findTriggers() {
               trigger.name == "Suggestive") &&
             stored["adult-content"]
           ) {
-            toDelete.push(deleteElement);
+            deleteElement.src = replaceImage;
             console.log("ADULT CONTENT FOUND");
           }
           if (
             trigger.name == "Visually Disturbing" &&
             stored["visually-disturbing"]
           ) {
-            toDelete.push(deleteElement);
+            deleteElement.src = replaceImage;
             console.log("VISUALLY DISUTBRING FOUND");
           }
           if (
@@ -64,22 +63,18 @@ function findTriggers() {
               trigger.name == "Alcohol") &&
             stored["substance-abuse"]
           ) {
-            toDelete.push(deleteElement);
+            deleteElement.src = replaceImage;
             console.log("substance FOUND");
           }
           if (trigger.name == "Gambling" && stored["gambling"]) {
-            toDelete.push(deleteElement);
+            deleteElement.src = replaceImage;
             console.log("VGMABLIGNG FOUND");
           }
           if (trigger.name == "Hate Symbols" && stored["hate"]) {
-            toDelete.push(deleteElement);
+            deleteElement.src = replaceImage;
             console.log("ahatate FOUND");
           }
         });
-      });
-      toDelete.forEach((item) => {
-        item.src =
-          "https://www.rd.com/wp-content/uploads/2020/04/GettyImages-694542042-e1586274805503.jpg";
       });
     }
     var imgSrcUrls = element.getElementsByTagName("img");
