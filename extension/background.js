@@ -138,11 +138,7 @@ function findTriggers() {
     var vidSrcUrls = element.getElementsByTagName("audio");
     for (var i = 0; i < vidSrcUrls.length; i++) {
       var urlValue = vidSrcUrls[i].src;
-      if (
-        urlValue &&
-        vidSrcUrls[i].clientHeight > 50 &&
-        vidSrcUrls[i].clientWidth > 50
-      ) {
+      if (urlValue) {
         console.log(urlValue);
         request_Assembly(vidSrcUrls[i]);
       }
