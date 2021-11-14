@@ -32,17 +32,13 @@ function findTriggers() {
     }).then((response) => response.json());
   }
   async function parseHtmlForImgs(element) {
-    function checkForTriggers(response) {
+    function checkForTriggers(response, deleteElement) {
       response.forEach((trigger) => {
         console.log(trigger);
         chrome.storage.sync.get(null, (stored) => {
           if (trigger.name == "Violence" && stored["violence"]) {
+            deleteElement.remove();
             console.log("VIOLENCE FOUND");
-            element.documentElement.innerHTML = "";
-            while (element.firstChild) {
-              element.removeChild(document.firstChild);
-            }
-            
           }
         });
       });
@@ -57,7 +53,7 @@ function findTriggers() {
       ) {
         console.log(urlValue);
         var d = await post_request_image(APP_IP + "/awsModeration", urlValue);
-        checkForTriggers(d);
+        checkForTriggers(d, imgSrcUrls[i]);
       }
     }
   }
