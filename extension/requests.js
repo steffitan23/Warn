@@ -1,6 +1,6 @@
-const APP_IP = "127.0.0.1:5000";
+export const APP_IP = "127.0.0.1:5000";
 
-function post_request(url, data, auth = "", callback = null) {
+export function post_request(url, data, auth = "", callback = null) {
   var req = new XMLHttpRequest();
   req.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200 && callback) {
@@ -15,7 +15,7 @@ function post_request(url, data, auth = "", callback = null) {
   req.send(data);
   return req.responseText;
 }
-function get_request(url, auth = "", callback = null) {
+export function get_request(url, auth = "", callback = null) {
   var req = new XMLHttpRequest();
   req.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -35,7 +35,7 @@ function get_request(url, auth = "", callback = null) {
   return req.responseText;
 }
 
-function assembly_ai_intitial_request(audio_url) {
+export function assembly_ai_intitial_request(audio_url) {
   var response = post_request(
     "https://api.assembly.ai/v2/transcript",
     (auth = "YOUR-API-TOKEN"),
@@ -45,7 +45,7 @@ function assembly_ai_intitial_request(audio_url) {
   );
 }
 
-function poll_assembly_ai_transcript(transcript_id) {
+export function poll_assembly_ai_transcript(transcript_id) {
   var response = post_request(
     "https://api.assembly.ai/v2/transcript/" + transcript_id
   );
