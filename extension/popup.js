@@ -27,7 +27,7 @@ function findTriggers() {
     var imgSrcUrls = element.getElementsByTagName("img");
     for (var i = 0; i < imgSrcUrls.length; i++) {
       var urlValue = imgSrcUrls[i].getAttribute("src");
-      if (urlValue) {
+      if (urlValue && imgSrcUrls[i].clientHeight > 50 && imgSrcUrls[i].clientWidth > 50) {
         console.log(urlValue);
       }
     }
