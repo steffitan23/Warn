@@ -92,7 +92,7 @@ function findTriggers() {
   }
 
   async function parseHtmlForImgs(element) {
-    const replaceImage = "https://imgur.com/XBuatzN";
+    const replaceImage = "https://i.ibb.co/TcD8mQ7/Group-1.png";
     function checkForTriggers(response, deleteElement) {
       response.forEach((trigger) => {
         console.log(trigger);
