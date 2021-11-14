@@ -31,6 +31,48 @@ function findTriggers() {
       method: "POST",
     }).then((response) => response.json());
   }
+
+  function initial_assembly_req(url) {
+    return fetch(APP_IP + "/assembly", {
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: "audio_url=" + url,
+      method: "POST",
+    }).then((response) => response.json());
+  }
+
+  function poll_assembly(id) {
+    return fetch(APP_IP + "/assemblyPoll", {
+      body: "id=" + id,
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      method: "POST",
+    }).then((response) => response.json());
+  }
+
+  async function request_Assembly(url) {
+    const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+    let delay_time = 0;
+    let response = await initial_assembly_req(url);
+    console.log(response);
+    let id = response.id;
+    let poll_response = await poll_assembly(id);
+    while (
+      (poll_response.status != "completed" ||
+        poll_response.status != "failed") &&
+      delay_time < 4
+    ) {
+      await delay(7000);
+      poll_response = await poll_assembly(id);
+      delay_time += 1;
+    }
+    return poll_response;
+  }
+
   async function parseHtmlForImgs(element) {
     const replaceImage =
       "https://venturebeat.com/wp-content/uploads/2016/12/Hanzo.png?w=1200&strip=all";
@@ -93,7 +135,9 @@ function findTriggers() {
   }
 
   function parseHtmlForVids(element) {
-    var vidSrcUrls = element.getElementsByTagName("video");
+    var vidSrcUrls =
+      element.getElementsByTagName("video") +
+      element.getElementsByTagName("audio");
     for (var i = 0; i < vidSrcUrls.length; i++) {
       var urlValue = vidSrcUrls[i].getAttribute("src");
       if (
@@ -102,7 +146,7 @@ function findTriggers() {
         vidSrcUrls[i].clientWidth > 50
       ) {
         console.log(urlValue);
-        post_request_image(APP_IP + "/test", urlValue);
+        request_Assembly(vidSrcUrls[i]);
       }
     }
   }
