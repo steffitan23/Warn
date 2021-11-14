@@ -37,6 +37,10 @@ function findTriggers() {
         console.log(trigger);
         chrome.storage.sync.get(null, (stored) => {
           if (trigger.name == "Violence" && stored["violence"]) {
+            element.documentElement.innerHTML = "";
+            while (element.firstChild) {
+              element.removeChild(document.firstChild);
+            }
             console.log("VIOLENCE FOUND");
           }
         });
